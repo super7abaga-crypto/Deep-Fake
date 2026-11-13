@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: deepfake-detector
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: HF_HOME
+        value: /app/model_cache
+      - key: MAX_UPLOAD_MB
+        value: "80"
+    disk:
+      name: model-cache
+      mountPath: /app/model_cache
+      sizeGB: 5
